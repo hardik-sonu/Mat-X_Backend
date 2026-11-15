@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# Secrets and local environment files
+.env
+.env.*
+!/.env.example
+# Local application storage and databases
+storage/
+*.sqlite
+*.sqlite3
+*.db
+# Local backups and generated audit artifacts
+backups/
+logs/
+*.bak
+*.backup
+*.old
+*.tmp
+batch*.txt
+t *
+-Pattern
+# Deployment and local tooling
+.vercel/
+.vscode/
+.idea/
+# Generated research, training and experimental outputs
+training_results/
+# Scientific data: preserve directory structure and approved source data
+data/*
+!data/README.md
+!data/**/
+!data/**/.gitkeep
+data/**/*.csv
+data/**/*.xlsx
+data/**/*.xls
+data/**/*.h5
+data/**/*.h5oina
+data/**/*.tif
+data/**/*.tiff
+data/**/*.png
+data/**/*.sqlite
+data/**/*.sqlite3
+!data/raw/steelbench/SteelBench v1.0.csv
+# Model candidates and local backup artifacts
+models/*candidate*
+models/*backup*
+# Operating system
+.DS_Store
+Thumbs.db
+*.pre_*_backup
+*.path-backup

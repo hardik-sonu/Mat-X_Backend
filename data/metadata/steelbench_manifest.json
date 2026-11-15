@@ -1,0 +1,50 @@
+{
+  "manifest_version": "1.0",
+  "dataset_id": "steelbench_v1",
+  "dataset_name": "SteelBench v1.0",
+  "file_name": "SteelBench v1.0.csv",
+  "relative_path": "data/raw/steelbench/SteelBench v1.0.csv",
+  "format": "CSV",
+  "record_count": 1360,
+  "column_count": 25,
+  "columns": [
+    "heat_id",
+    "grade_id",
+    "source",
+    "C",
+    "Mn",
+    "Cr",
+    "Mo",
+    "Ni",
+    "Si",
+    "V",
+    "Cu",
+    "Al",
+    "austenitize_T",
+    "quench_medium",
+    "temper_T",
+    "tensile_strength",
+    "yield_strength",
+    "elongation",
+    "reduction_area",
+    "impact_J_avg",
+    "condition",
+    "hardness",
+    "split",
+    "data_tier",
+    "steel_family"
+  ],
+  "source_field": "source",
+  "source_values": [
+    "EMK_spec",
+    "Kaggle_Carbon_Steel",
+    "Kaggle_Stainless_Steel",
+    "NIMS"
+  ],
+  "sha256": "323A3AEE7FBCCA2369AFAAD521A498703F2277CE9E66F88F1C078D8D9387B477",
+  "provenance": {
+    "classification": "SOURCE_DATA_AS_PUBLISHED",
+    "acquisition": "Locally stored source dataset",
+    "transformation": "Original CSV preserved; no manifest-time data modification"
+  }
+}

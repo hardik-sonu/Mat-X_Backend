@@ -1,0 +1,5505 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MAT-X API",
+    "description": "AI-Assisted Materials State Reconstruction and Active Investigation Engine",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/damage/assess": {
+      "post": {
+        "summary": "Damage Condition Assessment",
+        "operationId": "damage_condition_assessment_api_v1_damage_assess_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DamageAssessmentInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DamageAssessmentResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/material/state/reconstruct": {
+      "post": {
+        "summary": "Material State Reconstruction",
+        "operationId": "material_state_reconstruction_api_v1_material_state_reconstruct_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialStateReconstructionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaterialStateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/engineering/report": {
+      "post": {
+        "summary": "Engineering Report",
+        "operationId": "engineering_report_api_v1_engineering_report_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialStateReconstructionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EngineeringReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/models": {
+      "get": {
+        "summary": "Models",
+        "operationId": "models_api_v1_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/predict/tensile-strength": {
+      "post": {
+        "summary": "Tensile Strength",
+        "operationId": "tensile_strength_api_v1_predict_tensile_strength_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TensilePredictionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TensilePredictionResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Prediction model or persistence service unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/predict/yield-strength": {
+      "post": {
+        "summary": "Yield Strength",
+        "operationId": "yield_strength_api_v1_predict_yield_strength_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/YieldPredictionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/YieldPredictionResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Prediction model or persistence service unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/predict/inclusion": {
+      "post": {
+        "summary": "Inclusion",
+        "operationId": "inclusion_api_v1_predict_inclusion_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusionPredictionInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InclusionPredictionResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Prediction model or persistence service unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/microstructure/maps": {
+      "get": {
+        "summary": "Microstructure Maps",
+        "operationId": "microstructure_maps_api_v1_microstructure_maps_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrostructureMapsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/microstructure/maps/{map_id}/features": {
+      "get": {
+        "summary": "Microstructure Features",
+        "operationId": "microstructure_features_api_v1_microstructure_maps__map_id__features_get",
+        "parameters": [
+          {
+            "name": "map_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Map Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Microstructure Features Api V1 Microstructure Maps  Map Id  Features Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/fatigue/response": {
+      "get": {
+        "summary": "Fatigue Response",
+        "operationId": "fatigue_response_api_v1_fatigue_response_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FatigueResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/investigation/recommend": {
+      "post": {
+        "summary": "Investigation Recommendation",
+        "operationId": "investigation_recommendation_api_v1_investigation_recommend_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActiveInvestigationInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActiveInvestigationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/investigation/recommend/persist": {
+      "post": {
+        "summary": "Persist Investigation Recommendation",
+        "description": "Recommend and persist proposed experiments without claiming execution.",
+        "operationId": "persist_investigation_recommendation_api_v1_investigation_recommend_persist_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActiveInvestigationInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActiveInvestigationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/material/identity/candidates": {
+      "post": {
+        "summary": "Material Identity Candidates",
+        "operationId": "material_identity_candidates_api_v1_material_identity_candidates_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialIdentityInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaterialIdentityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/history": {
+      "get": {
+        "summary": "Process History",
+        "operationId": "process_history_api_v1_process_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessHistoryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/history/analysis": {
+      "get": {
+        "summary": "Process History Analysis",
+        "operationId": "process_history_analysis_api_v1_process_history_analysis_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessHistoryAnalysisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/history/heat/{heat_id}": {
+      "get": {
+        "summary": "Process History By Heat",
+        "operationId": "process_history_by_heat_api_v1_process_history_heat__heat_id__get",
+        "parameters": [
+          {
+            "name": "heat_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Heat Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessLookupResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/process/history/grade/{grade_id}": {
+      "get": {
+        "summary": "Process History By Grade",
+        "operationId": "process_history_by_grade_api_v1_process_history_grade__grade_id__get",
+        "parameters": [
+          {
+            "name": "grade_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Grade Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessLookupResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/microstructure/provenance": {
+      "get": {
+        "summary": "Microstructure Provenance",
+        "operationId": "microstructure_provenance_api_v1_microstructure_provenance_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EbsdProvenanceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/microstructure/maps/{map_id}/unified": {
+      "get": {
+        "summary": "Unified Microstructure Record",
+        "operationId": "unified_microstructure_record_api_v1_microstructure_maps__map_id__unified_get",
+        "parameters": [
+          {
+            "name": "map_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Map Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnifiedMicrostructureResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/jarvis/structures": {
+      "get": {
+        "summary": "Jarvis Structures",
+        "operationId": "jarvis_structures_api_v1_datasets_jarvis_structures_get",
+        "parameters": [
+          {
+            "name": "elements",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Chemical element symbols, e.g. Fe and Ni.",
+              "title": "Elements"
+            },
+            "description": "Chemical element symbols, e.g. Fe and Ni."
+          },
+          {
+            "name": "page_limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 10,
+              "title": "Page Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JarvisSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/aflow/search": {
+      "get": {
+        "summary": "Aflow Search",
+        "operationId": "aflow_search_api_v1_datasets_aflow_search_get",
+        "parameters": [
+          {
+            "name": "elements",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Chemical element symbols, e.g. Fe and Ni.",
+              "title": "Elements"
+            },
+            "description": "Chemical element symbols, e.g. Fe and Ni."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 10,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "exact_species_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 7,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exact Species Count"
+            }
+          },
+          {
+            "name": "require_properties",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Require Properties"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AflowSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/steelbench/records": {
+      "get": {
+        "summary": "Steelbench Records",
+        "operationId": "steelbench_records_api_v1_datasets_steelbench_records_get",
+        "parameters": [
+          {
+            "name": "heat_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Heat Id"
+            }
+          },
+          {
+            "name": "grade_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Grade Id"
+            }
+          },
+          {
+            "name": "steel_family",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Steel Family"
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          },
+          {
+            "name": "data_tier",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Data Tier"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Query"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 25,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SteelBenchSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/zenodo/search": {
+      "get": {
+        "summary": "Zenodo Search",
+        "operationId": "zenodo_search_api_v1_datasets_zenodo_search_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500,
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 25,
+              "minimum": 1,
+              "default": 10,
+              "title": "Size"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "bestmatch",
+              "title": "Sort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZenodoSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/local": {
+      "get": {
+        "summary": "Local Dataset List",
+        "operationId": "local_dataset_list_api_v1_datasets_local_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalDatasetListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/local/records": {
+      "get": {
+        "summary": "Local Dataset Search",
+        "operationId": "local_dataset_search_api_v1_datasets_local_records_get",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "title": "Filename"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Query"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalDatasetSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence": {
+      "post": {
+        "summary": "Create Evidence",
+        "description": "Create an immutable scientific evidence record.",
+        "operationId": "create_evidence_api_v1_evidence_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvidenceCreateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceRecordResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Evidence",
+        "description": "List evidence records with optional filters.",
+        "operationId": "list_evidence_api_v1_evidence_get",
+        "parameters": [
+          {
+            "name": "material_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Material Id"
+            }
+          },
+          {
+            "name": "investigation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Investigation Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1000,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EvidenceRecordResponse"
+                  },
+                  "title": "Response List Evidence Api V1 Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence/{evidence_id}": {
+      "get": {
+        "summary": "Retrieve Evidence",
+        "description": "Retrieve one evidence record by its identifier.",
+        "operationId": "retrieve_evidence_api_v1_evidence__evidence_id__get",
+        "parameters": [
+          {
+            "name": "evidence_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evidence Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceRecordResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence/upload": {
+      "post": {
+        "summary": "Upload Evidence",
+        "description": "Upload a scientific evidence file and register its provenance.",
+        "operationId": "upload_evidence_api_v1_evidence_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_evidence_api_v1_evidence_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceRecordResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence/{evidence_id}/file": {
+      "get": {
+        "summary": "Download Evidence File",
+        "description": "Download an evidence file after path and checksum verification.",
+        "operationId": "download_evidence_file_api_v1_evidence__evidence_id__file_get",
+        "parameters": [
+          {
+            "name": "evidence_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evidence Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verified evidence file download.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scientific-records/{table}": {
+      "post": {
+        "summary": "Create Scientific Record Api",
+        "description": "Create an append-only record in an allowed scientific table.",
+        "operationId": "create_scientific_record_api_api_v1_scientific_records__table__post",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "title": "Payload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Scientific Record Api Api V1 Scientific Records  Table  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Scientific Records Api",
+        "description": "List scientific records using optional JSON equality filters.",
+        "operationId": "list_scientific_records_api_api_v1_scientific_records__table__get",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table"
+            }
+          },
+          {
+            "name": "filters_json",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Filters Json"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1000,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response List Scientific Records Api Api V1 Scientific Records  Table  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scientific-records/{table}/{record_id}": {
+      "get": {
+        "summary": "Retrieve Scientific Record Api",
+        "description": "Retrieve a scientific record by its table-specific identifier.",
+        "operationId": "retrieve_scientific_record_api_api_v1_scientific_records__table___record_id__get",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table"
+            }
+          },
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Record Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Retrieve Scientific Record Api Api V1 Scientific Records  Table   Record Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scientific-records/{table}/{record_id}/lifecycle": {
+      "patch": {
+        "summary": "Update Scientific Lifecycle Api",
+        "description": "Advance an investigation or experiment through valid lifecycle states.",
+        "operationId": "update_scientific_lifecycle_api_api_v1_scientific_records__table___record_id__lifecycle_patch",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table"
+            }
+          },
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Record Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "title": "Payload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Update Scientific Lifecycle Api Api V1 Scientific Records  Table   Record Id  Lifecycle Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/microstructure/analyze": {
+      "post": {
+        "summary": "Analyze Microstructure Upload",
+        "operationId": "analyze_microstructure_upload_api_v1_microstructure_analyze_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_analyze_microstructure_upload_api_v1_microstructure_analyze_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActiveInvestigationInput": {
+        "properties": {
+          "material_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Material Id"
+          },
+          "material_family": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Material Family"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence"
+          },
+          "uncertainty": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Uncertainty"
+          },
+          "information_gain_inputs": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Information Gain Inputs"
+          },
+          "investigation_goal": {
+            "type": "string",
+            "const": "material_state_reconstruction",
+            "title": "Investigation Goal",
+            "default": "material_state_reconstruction"
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 7.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "default": 5
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material_id",
+          "material_family",
+          "evidence"
+        ],
+        "title": "ActiveInvestigationInput"
+      },
+      "ActiveInvestigationResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "material_id": {
+            "type": "string",
+            "title": "Material Id"
+          },
+          "material_family": {
+            "type": "string",
+            "title": "Material Family"
+          },
+          "investigation_goal": {
+            "type": "string",
+            "title": "Investigation Goal"
+          },
+          "evidence_summary": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence Summary"
+          },
+          "recommendations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "recommendation_count": {
+            "type": "integer",
+            "title": "Recommendation Count"
+          },
+          "methodology": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Methodology"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "material_id",
+          "material_family",
+          "investigation_goal",
+          "evidence_summary",
+          "recommendations",
+          "recommendation_count",
+          "methodology",
+          "limitations",
+          "status"
+        ],
+        "title": "ActiveInvestigationResponse"
+      },
+      "AflowSearchQuery": {
+        "properties": {
+          "elements": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Elements"
+          },
+          "exact_species_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exact Species Count"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "require_properties": {
+            "type": "boolean",
+            "title": "Require Properties"
+          },
+          "aflux_summons": {
+            "type": "string",
+            "title": "Aflux Summons"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "elements",
+          "page",
+          "page_size",
+          "require_properties",
+          "aflux_summons"
+        ],
+        "title": "AflowSearchQuery"
+      },
+      "AflowSearchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "query": {
+            "$ref": "#/components/schemas/AflowSearchQuery"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "total_matches": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Matches"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/AflowStructureRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "property_units": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Property Units"
+          },
+          "scientific_notice": {
+            "type": "string",
+            "title": "Scientific Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "provider",
+          "dataset",
+          "classification",
+          "query",
+          "record_count",
+          "records",
+          "property_units",
+          "scientific_notice"
+        ],
+        "title": "AflowSearchResponse"
+      },
+      "AflowSource": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "record_id": {
+            "type": "string",
+            "title": "Record Id"
+          },
+          "record_locator": {
+            "type": "string",
+            "title": "Record Locator"
+          },
+          "data_origin": {
+            "type": "string",
+            "title": "Data Origin"
+          },
+          "citation": {
+            "type": "string",
+            "title": "Citation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "provider",
+          "dataset",
+          "classification",
+          "record_id",
+          "record_locator",
+          "data_origin",
+          "citation"
+        ],
+        "title": "AflowSource"
+      },
+      "AflowStructureRecord": {
+        "properties": {
+          "auid": {
+            "type": "string",
+            "title": "Auid"
+          },
+          "aurl": {
+            "type": "string",
+            "title": "Aurl"
+          },
+          "compound": {
+            "type": "string",
+            "title": "Compound"
+          },
+          "species": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Species"
+          },
+          "number_of_species": {
+            "type": "integer",
+            "title": "Number Of Species"
+          },
+          "space_group": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Space Group"
+          },
+          "pearson_symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pearson Symbol"
+          },
+          "band_gap": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Band Gap"
+          },
+          "formation_enthalpy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Formation Enthalpy"
+          },
+          "source": {
+            "$ref": "#/components/schemas/AflowSource"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "auid",
+          "aurl",
+          "compound",
+          "species",
+          "number_of_species",
+          "source"
+        ],
+        "title": "AflowStructureRecord"
+      },
+      "ApplicabilityResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "IN_DOMAIN",
+              "BORDERLINE",
+              "OUT_OF_DOMAIN",
+              "INSUFFICIENT_EVIDENCE"
+            ],
+            "title": "Status"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "distance": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance"
+          },
+          "thresholds": {
+            "$ref": "#/components/schemas/ApplicabilityThresholdsResponse"
+          },
+          "eligible_dimensions": {
+            "type": "integer",
+            "title": "Eligible Dimensions"
+          },
+          "provided_feature_count": {
+            "type": "integer",
+            "title": "Provided Feature Count"
+          },
+          "missing_features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Features"
+          },
+          "unseen_categories": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Unseen Categories"
+          },
+          "range_violations": {
+            "items": {
+              "$ref": "#/components/schemas/RangeViolationResponse"
+            },
+            "type": "array",
+            "title": "Range Violations"
+          },
+          "interpretation": {
+            "type": "string",
+            "title": "Interpretation"
+          },
+          "confidence_probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence Probability"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "method",
+          "distance",
+          "thresholds",
+          "eligible_dimensions",
+          "provided_feature_count",
+          "missing_features",
+          "unseen_categories",
+          "range_violations",
+          "interpretation",
+          "confidence_probability"
+        ],
+        "title": "ApplicabilityResponse"
+      },
+      "ApplicabilityThresholdsResponse": {
+        "properties": {
+          "q90": {
+            "type": "number",
+            "title": "Q90"
+          },
+          "q95": {
+            "type": "number",
+            "title": "Q95"
+          },
+          "calibration_unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calibration Unit"
+          },
+          "calibration_grades": {
+            "type": "integer",
+            "title": "Calibration Grades"
+          },
+          "q90_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q90 Rank"
+          },
+          "q95_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q95 Rank"
+          },
+          "calibration_records": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calibration Records"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "q90",
+          "q95",
+          "calibration_grades"
+        ],
+        "title": "ApplicabilityThresholdsResponse"
+      },
+      "Body_analyze_microstructure_upload_api_v1_microstructure_analyze_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "scale_um_per_pixel": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scale Um Per Pixel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_analyze_microstructure_upload_api_v1_microstructure_analyze_post"
+      },
+      "Body_upload_evidence_api_v1_evidence_upload_post": {
+        "properties": {
+          "metadata": {
+            "type": "string",
+            "title": "Metadata"
+          },
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "metadata",
+          "file"
+        ],
+        "title": "Body_upload_evidence_api_v1_evidence_upload_post"
+      },
+      "DamageAssessmentInput": {
+        "properties": {
+          "material_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Material Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material_id"
+        ],
+        "title": "DamageAssessmentInput"
+      },
+      "DamageAssessmentResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "material_id": {
+            "type": "string",
+            "title": "Material Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "evidence_status": {
+            "type": "string",
+            "title": "Evidence Status"
+          },
+          "observation_count": {
+            "type": "integer",
+            "title": "Observation Count"
+          },
+          "excluded_record_count": {
+            "type": "integer",
+            "title": "Excluded Record Count"
+          },
+          "observations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Observations"
+          },
+          "diagnosis_performed": {
+            "type": "boolean",
+            "title": "Diagnosis Performed"
+          },
+          "severity_assessed": {
+            "type": "boolean",
+            "title": "Severity Assessed"
+          },
+          "remaining_life_predicted": {
+            "type": "boolean",
+            "title": "Remaining Life Predicted"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "material_id",
+          "status",
+          "evidence_status",
+          "observation_count",
+          "excluded_record_count",
+          "observations",
+          "diagnosis_performed",
+          "severity_assessed",
+          "remaining_life_predicted",
+          "limitations"
+        ],
+        "title": "DamageAssessmentResponse"
+      },
+      "EbsdProvenanceResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "files_discovered": {
+            "type": "integer",
+            "title": "Files Discovered"
+          },
+          "files_extracted": {
+            "type": "integer",
+            "title": "Files Extracted"
+          },
+          "failed_files": {
+            "type": "integer",
+            "title": "Failed Files"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "errors": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Errors"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "version",
+          "files_discovered",
+          "files_extracted",
+          "failed_files",
+          "records",
+          "errors"
+        ],
+        "title": "EbsdProvenanceResponse"
+      },
+      "EngineeringReportResponse": {
+        "properties": {
+          "report": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Report"
+          },
+          "material": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Material"
+          },
+          "executive_summary": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Executive Summary"
+          },
+          "source_evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Source Evidence"
+          },
+          "validated_evidence_registry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Validated Evidence Registry"
+          },
+          "material_identity_assessment": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Identity Assessment"
+          },
+          "damage_condition_assessment": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Damage Condition Assessment"
+          },
+          "user_reported_damage_observation": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "User Reported Damage Observation"
+          },
+          "active_investigation": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Active Investigation"
+          },
+          "prediction_results": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Prediction Results"
+          },
+          "scientific_scope": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Scientific Scope"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "engineering_disclaimer": {
+            "type": "string",
+            "title": "Engineering Disclaimer"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "report",
+          "material",
+          "executive_summary",
+          "source_evidence",
+          "validated_evidence_registry",
+          "material_identity_assessment",
+          "damage_condition_assessment",
+          "user_reported_damage_observation",
+          "active_investigation",
+          "prediction_results",
+          "scientific_scope",
+          "limitations",
+          "engineering_disclaimer"
+        ],
+        "title": "EngineeringReportResponse"
+      },
+      "EvidenceCreateInput": {
+        "properties": {
+          "material_id": {
+            "type": "string",
+            "title": "Material Id"
+          },
+          "evidence_category": {
+            "type": "string",
+            "title": "Evidence Category"
+          },
+          "measured_quantity": {
+            "type": "string",
+            "title": "Measured Quantity"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "provenance_classification": {
+            "type": "string",
+            "title": "Provenance Classification"
+          },
+          "investigation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Investigation Id"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "uncertainty_value": {
+            "title": "Uncertainty Value"
+          },
+          "measurement_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Measurement Method"
+          },
+          "test_standard": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Test Standard"
+          },
+          "source_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Name"
+          },
+          "source_record_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Record Id"
+          },
+          "doi_or_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doi Or Url"
+          },
+          "specimen_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Specimen Id"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "stored_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stored Filename"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sha256"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material_id",
+          "evidence_category",
+          "measured_quantity",
+          "source_type",
+          "provenance_classification"
+        ],
+        "title": "EvidenceCreateInput",
+        "description": "Validated API contract for an immutable scientific evidence record."
+      },
+      "EvidenceRecordResponse": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "title": "Evidence Id"
+          },
+          "material_id": {
+            "type": "string",
+            "title": "Material Id"
+          },
+          "evidence_category": {
+            "type": "string",
+            "title": "Evidence Category"
+          },
+          "measured_quantity": {
+            "type": "string",
+            "title": "Measured Quantity"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "uncertainty_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uncertainty Value"
+          },
+          "measurement_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Measurement Method"
+          },
+          "test_standard": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Test Standard"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Name"
+          },
+          "source_record_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Record Id"
+          },
+          "doi_or_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doi Or Url"
+          },
+          "specimen_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Specimen Id"
+          },
+          "investigation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Investigation Id"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "provenance_classification": {
+            "type": "string",
+            "title": "Provenance Classification"
+          },
+          "validation_status": {
+            "type": "string",
+            "title": "Validation Status"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "stored_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stored Filename"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sha256"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "material_id",
+          "evidence_category",
+          "measured_quantity",
+          "source_type",
+          "provenance_classification",
+          "validation_status",
+          "created_at"
+        ],
+        "title": "EvidenceRecordResponse"
+      },
+      "FatigueResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "source_file": {
+            "type": "string",
+            "title": "Source File"
+          },
+          "cycle_feature_records": {
+            "type": "integer",
+            "title": "Cycle Feature Records"
+          },
+          "independent_specimens": {
+            "type": "integer",
+            "title": "Independent Specimens"
+          },
+          "geometry_groups": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Geometry Groups"
+          },
+          "specimen_results": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Specimen Results"
+          },
+          "scientific_scope": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Scientific Scope"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "source_file",
+          "cycle_feature_records",
+          "independent_specimens",
+          "geometry_groups",
+          "specimen_results",
+          "scientific_scope",
+          "status"
+        ],
+        "title": "FatigueResponse"
+      },
+      "FeatureEvidenceResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PROVIDED",
+              "IMPUTED_BY_MODEL"
+            ],
+            "title": "Status"
+          },
+          "supplied_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplied Value"
+          },
+          "imputation_strategy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Imputation Strategy"
+          },
+          "imputation_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Imputation Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "supplied_value",
+          "imputation_strategy",
+          "imputation_value"
+        ],
+        "title": "FeatureEvidenceResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "service": {
+            "type": "string",
+            "title": "Service"
+          },
+          "models_available": {
+            "type": "integer",
+            "title": "Models Available"
+          },
+          "models_registered": {
+            "type": "integer",
+            "title": "Models Registered"
+          },
+          "models": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Models"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "status",
+          "service",
+          "models_available",
+          "models_registered",
+          "models"
+        ],
+        "title": "HealthResponse"
+      },
+      "InclusionPredictionInput": {
+        "properties": {
+          "features": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Features"
+          },
+          "material_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "features"
+        ],
+        "title": "InclusionPredictionInput"
+      },
+      "InclusionPredictionResponse": {
+        "properties": {
+          "predicted_class": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Predicted Class"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "probabilities": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Probabilities"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            ],
+            "title": "Model"
+          },
+          "scope": {
+            "title": "Scope"
+          },
+          "validation": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Validation"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "persistence": {
+            "$ref": "#/components/schemas/PredictionPersistenceResponse"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "predicted_class",
+          "classification",
+          "probabilities",
+          "model",
+          "scope",
+          "validation",
+          "limitations",
+          "persistence"
+        ],
+        "title": "InclusionPredictionResponse"
+      },
+      "InputEvidenceResponse": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "total_features": {
+            "type": "integer",
+            "title": "Total Features"
+          },
+          "provided_feature_count": {
+            "type": "integer",
+            "title": "Provided Feature Count"
+          },
+          "imputed_feature_count": {
+            "type": "integer",
+            "title": "Imputed Feature Count"
+          },
+          "provided_feature_fraction": {
+            "type": "number",
+            "title": "Provided Feature Fraction"
+          },
+          "provided_features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Provided Features"
+          },
+          "imputed_features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Imputed Features"
+          },
+          "feature_details": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FeatureEvidenceResponse"
+            },
+            "type": "object",
+            "title": "Feature Details"
+          },
+          "interpretation": {
+            "type": "string",
+            "title": "Interpretation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "method",
+          "total_features",
+          "provided_feature_count",
+          "imputed_feature_count",
+          "provided_feature_fraction",
+          "provided_features",
+          "imputed_features",
+          "feature_details",
+          "interpretation"
+        ],
+        "title": "InputEvidenceResponse"
+      },
+      "JarvisSearchQuery": {
+        "properties": {
+          "elements": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Elements"
+          },
+          "page_limit": {
+            "type": "integer",
+            "title": "Page Limit"
+          },
+          "filter": {
+            "type": "string",
+            "title": "Filter"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "elements",
+          "page_limit",
+          "filter"
+        ],
+        "title": "JarvisSearchQuery"
+      },
+      "JarvisSearchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "query": {
+            "$ref": "#/components/schemas/JarvisSearchQuery"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "more_data_available": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "More Data Available"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/JarvisStructureRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "scientific_notice": {
+            "type": "string",
+            "title": "Scientific Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "provider",
+          "dataset",
+          "classification",
+          "query",
+          "record_count",
+          "records",
+          "scientific_notice"
+        ],
+        "title": "JarvisSearchResponse"
+      },
+      "JarvisSource": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "record_id": {
+            "type": "string",
+            "title": "Record Id"
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "data_origin": {
+            "type": "string",
+            "title": "Data Origin"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "provider",
+          "dataset",
+          "classification",
+          "record_id",
+          "endpoint",
+          "data_origin"
+        ],
+        "title": "JarvisSource"
+      },
+      "JarvisStructureRecord": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "jarvis_id": {
+            "type": "string",
+            "title": "Jarvis Id"
+          },
+          "formula": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Formula"
+          },
+          "elements": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elements"
+          },
+          "density": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Density"
+          },
+          "space_group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Space Group"
+          },
+          "formation_energy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Formation Energy"
+          },
+          "band_gap": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Band Gap"
+          },
+          "reference": {
+            "title": "Reference"
+          },
+          "source": {
+            "$ref": "#/components/schemas/JarvisSource"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "jarvis_id",
+          "source"
+        ],
+        "title": "JarvisStructureRecord"
+      },
+      "LocalDatasetFile": {
+        "properties": {
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "title": "Size Bytes"
+          },
+          "modified_at": {
+            "type": "string",
+            "title": "Modified At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "filename",
+          "format",
+          "size_bytes",
+          "modified_at"
+        ],
+        "title": "LocalDatasetFile"
+      },
+      "LocalDatasetListResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "dataset_directory": {
+            "type": "string",
+            "title": "Dataset Directory"
+          },
+          "dataset_count": {
+            "type": "integer",
+            "title": "Dataset Count"
+          },
+          "datasets": {
+            "items": {
+              "$ref": "#/components/schemas/LocalDatasetFile"
+            },
+            "type": "array",
+            "title": "Datasets"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "dataset_directory",
+          "dataset_count",
+          "datasets"
+        ],
+        "title": "LocalDatasetListResponse"
+      },
+      "LocalDatasetSearchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format"
+          },
+          "columns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "total_source_records": {
+            "type": "integer",
+            "title": "Total Source Records"
+          },
+          "total_matches": {
+            "type": "integer",
+            "title": "Total Matches"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "source_provenance": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Source Provenance"
+          },
+          "scientific_notice": {
+            "type": "string",
+            "title": "Scientific Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "dataset",
+          "format",
+          "columns",
+          "total_source_records",
+          "total_matches",
+          "record_count",
+          "limit",
+          "offset",
+          "records",
+          "source_provenance",
+          "scientific_notice"
+        ],
+        "title": "LocalDatasetSearchResponse"
+      },
+      "MaterialIdentityInput": {
+        "properties": {
+          "composition": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "minProperties": 1,
+            "title": "Composition",
+            "description": "Measured elemental composition in weight percent."
+          },
+          "material_family": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Family"
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "default": 10
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "composition"
+        ],
+        "title": "MaterialIdentityInput"
+      },
+      "MaterialIdentityResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "query_composition": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Query Composition"
+          },
+          "material_family_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Family Filter"
+          },
+          "reference_grade_count": {
+            "type": "integer",
+            "title": "Reference Grade Count"
+          },
+          "eligible_candidate_count": {
+            "type": "integer",
+            "title": "Eligible Candidate Count"
+          },
+          "recommendations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "methodology": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Methodology"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "query_composition",
+          "material_family_filter",
+          "reference_grade_count",
+          "eligible_candidate_count",
+          "recommendations",
+          "methodology",
+          "limitations",
+          "status"
+        ],
+        "title": "MaterialIdentityResponse"
+      },
+      "MaterialStateReconstructionInput": {
+        "properties": {
+          "material_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Material Id"
+          },
+          "material_family": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Material Family"
+          },
+          "composition": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Composition"
+          },
+          "measured_properties": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Measured Properties"
+          },
+          "heat_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heat Id"
+          },
+          "grade_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grade Id"
+          },
+          "microstructure_map_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16,
+                "minLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Microstructure Map Id"
+          },
+          "damage_condition": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Damage Condition"
+          },
+          "uncertainty": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Uncertainty"
+          },
+          "identity_top_k": {
+            "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Identity Top K",
+            "default": 5
+          },
+          "investigation_top_k": {
+            "type": "integer",
+            "maximum": 7.0,
+            "minimum": 1.0,
+            "title": "Investigation Top K",
+            "default": 5
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "material_id",
+          "material_family"
+        ],
+        "title": "MaterialStateReconstructionInput"
+      },
+      "MaterialStateResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "material": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Material"
+          },
+          "material_identity_assessment": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Material Identity Assessment"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence"
+          },
+          "damage_condition_assessment": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Damage Condition Assessment"
+          },
+          "evidence_registry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence Registry"
+          },
+          "evidence_summary": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence Summary"
+          },
+          "active_investigation": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Active Investigation"
+          },
+          "scientific_scope": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Scientific Scope"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "status",
+          "material",
+          "material_identity_assessment",
+          "evidence",
+          "damage_condition_assessment",
+          "evidence_registry",
+          "evidence_summary",
+          "active_investigation",
+          "scientific_scope",
+          "limitations"
+        ],
+        "title": "MaterialStateResponse"
+      },
+      "MicrostructureMapsResponse": {
+        "properties": {
+          "dataset_root": {
+            "type": "string",
+            "title": "Dataset Root"
+          },
+          "map_count": {
+            "type": "integer",
+            "title": "Map Count"
+          },
+          "maps": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Maps"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "dataset_root",
+          "map_count",
+          "maps"
+        ],
+        "title": "MicrostructureMapsResponse"
+      },
+      "ModelsResponse": {
+        "properties": {
+          "registered_models": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Registered Models"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "registered_models"
+        ],
+        "title": "ModelsResponse"
+      },
+      "PredictionPersistenceResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "prediction_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction Id"
+          },
+          "material_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Id"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "PredictionPersistenceResponse"
+      },
+      "PredictionValidationResponse": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "training_records": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Training Records"
+          },
+          "test_records": {
+            "type": "integer",
+            "title": "Test Records"
+          },
+          "MAE": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mae"
+          },
+          "RMSE": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          },
+          "R2": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "R2"
+          },
+          "median_baseline_MAE": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Baseline Mae"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "method",
+          "test_records"
+        ],
+        "title": "PredictionValidationResponse"
+      },
+      "PredictiveUncertaintyResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "NOT_AVAILABLE",
+            "title": "Status"
+          },
+          "interval_lower": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval Lower"
+          },
+          "interval_upper": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval Upper"
+          },
+          "confidence_level": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence Level"
+          },
+          "method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Method"
+          },
+          "calibration_status": {
+            "type": "string",
+            "const": "NOT_PROMOTED",
+            "title": "Calibration Status"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "interval_lower",
+          "interval_upper",
+          "confidence_level",
+          "method",
+          "calibration_status",
+          "reason"
+        ],
+        "title": "PredictiveUncertaintyResponse"
+      },
+      "ProcessHistoryAnalysisResponse": {
+        "properties": {
+          "top_observed_process_combinations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Top Observed Process Combinations"
+          },
+          "complete_documented_routes": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Complete Documented Routes"
+          },
+          "steel_family_summary": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Steel Family Summary"
+          },
+          "grade_summary": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Grade Summary"
+          },
+          "returned_record_limits": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Returned Record Limits"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "top_observed_process_combinations",
+          "complete_documented_routes",
+          "steel_family_summary",
+          "grade_summary",
+          "returned_record_limits"
+        ],
+        "title": "ProcessHistoryAnalysisResponse"
+      },
+      "ProcessHistoryResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "total_records": {
+            "type": "integer",
+            "title": "Total Records"
+          },
+          "unique_heats": {
+            "type": "integer",
+            "title": "Unique Heats"
+          },
+          "process_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Process Fields"
+          },
+          "status_distribution": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Status Distribution"
+          },
+          "field_availability": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Field Availability"
+          },
+          "methodology": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Methodology"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "outputs": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Outputs"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "version",
+          "status",
+          "dataset",
+          "total_records",
+          "unique_heats",
+          "process_fields",
+          "status_distribution",
+          "field_availability",
+          "methodology",
+          "limitations",
+          "outputs"
+        ],
+        "title": "ProcessHistoryResponse"
+      },
+      "ProcessLookupResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "lookup_type": {
+            "type": "string",
+            "title": "Lookup Type"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "status",
+          "lookup_type",
+          "record_count",
+          "records",
+          "limitations"
+        ],
+        "title": "ProcessLookupResponse"
+      },
+      "RangeViolationResponse": {
+        "properties": {
+          "feature": {
+            "type": "string",
+            "title": "Feature"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "q01": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q01"
+          },
+          "q99": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q99"
+          },
+          "minimum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum"
+          },
+          "maximum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "feature",
+          "value",
+          "type"
+        ],
+        "title": "RangeViolationResponse"
+      },
+      "SteelBenchProvenance": {
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "dataset_version": {
+            "type": "string",
+            "title": "Dataset Version"
+          },
+          "record_id": {
+            "type": "string",
+            "title": "Record Id"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "dataset",
+          "dataset_version",
+          "record_id",
+          "classification",
+          "source_name"
+        ],
+        "title": "SteelBenchProvenance"
+      },
+      "SteelBenchRecord": {
+        "properties": {
+          "heat_id": {
+            "type": "string",
+            "title": "Heat Id"
+          },
+          "grade_id": {
+            "type": "string",
+            "title": "Grade Id"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "steel_family": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Steel Family"
+          },
+          "composition_wt_pct": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Composition Wt Pct"
+          },
+          "process_history": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Process History"
+          },
+          "mechanical_properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Mechanical Properties"
+          },
+          "condition_raw": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Condition Raw"
+          },
+          "split": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Split"
+          },
+          "data_tier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data Tier"
+          },
+          "source_provenance": {
+            "$ref": "#/components/schemas/SteelBenchProvenance"
+          },
+          "quality_warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Quality Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "heat_id",
+          "grade_id",
+          "source",
+          "composition_wt_pct",
+          "process_history",
+          "mechanical_properties",
+          "source_provenance",
+          "quality_warnings"
+        ],
+        "title": "SteelBenchRecord"
+      },
+      "SteelBenchSearchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "dataset_version": {
+            "type": "string",
+            "title": "Dataset Version"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "total_matches": {
+            "type": "integer",
+            "title": "Total Matches"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "columns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/SteelBenchRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "scientific_notice": {
+            "type": "string",
+            "title": "Scientific Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "provider",
+          "dataset",
+          "dataset_version",
+          "classification",
+          "record_count",
+          "total_matches",
+          "limit",
+          "offset",
+          "columns",
+          "records",
+          "scientific_notice"
+        ],
+        "title": "SteelBenchSearchResponse"
+      },
+      "TensilePredictionInput": {
+        "properties": {
+          "C": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C"
+          },
+          "Mn": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mn"
+          },
+          "Cr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cr"
+          },
+          "Mo": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mo"
+          },
+          "Ni": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ni"
+          },
+          "Si": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Si"
+          },
+          "V": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          },
+          "Cu": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cu"
+          },
+          "Al": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Al"
+          },
+          "austenitize_T": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Austenitize T"
+          },
+          "temper_T": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temper T"
+          },
+          "quench_medium": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quench Medium"
+          },
+          "steel_family": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Steel Family"
+          },
+          "material_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "TensilePredictionInput"
+      },
+      "TensilePredictionResponse": {
+        "properties": {
+          "prediction": {
+            "type": "number",
+            "title": "Prediction"
+          },
+          "input_evidence": {
+            "$ref": "#/components/schemas/InputEvidenceResponse"
+          },
+          "applicability": {
+            "$ref": "#/components/schemas/ApplicabilityResponse"
+          },
+          "predictive_uncertainty": {
+            "$ref": "#/components/schemas/PredictiveUncertaintyResponse"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "target_unit": {
+            "type": "string",
+            "title": "Target Unit"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/PredictionValidationResponse"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "persistence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PredictionPersistenceResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "explainability": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explainability"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "prediction",
+          "input_evidence",
+          "applicability",
+          "predictive_uncertainty",
+          "target",
+          "target_unit",
+          "model",
+          "validation",
+          "limitations"
+        ],
+        "title": "TensilePredictionResponse"
+      },
+      "UnifiedMicrostructureResponse": {
+        "properties": {
+          "engine": {
+            "type": "string",
+            "title": "Engine"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "map_id": {
+            "type": "string",
+            "title": "Map Id"
+          },
+          "microstructure_features": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Microstructure Features"
+          },
+          "characterization_provenance": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Characterization Provenance"
+          },
+          "scientific_scope": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Scientific Scope"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "engine",
+          "engine_version",
+          "status",
+          "map_id",
+          "microstructure_features",
+          "characterization_provenance",
+          "scientific_scope"
+        ],
+        "title": "UnifiedMicrostructureResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "YieldPredictionInput": {
+        "properties": {
+          "C": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C"
+          },
+          "Mn": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mn"
+          },
+          "Cr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cr"
+          },
+          "Mo": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mo"
+          },
+          "Ni": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ni"
+          },
+          "Si": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Si"
+          },
+          "V": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          },
+          "Cu": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cu"
+          },
+          "Al": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Al"
+          },
+          "austenitize_T": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Austenitize T"
+          },
+          "temper_T": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temper T"
+          },
+          "quench_medium": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quench Medium"
+          },
+          "steel_family": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Steel Family"
+          },
+          "material_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "YieldPredictionInput"
+      },
+      "YieldPredictionResponse": {
+        "properties": {
+          "prediction": {
+            "type": "number",
+            "title": "Prediction"
+          },
+          "input_evidence": {
+            "$ref": "#/components/schemas/InputEvidenceResponse"
+          },
+          "applicability": {
+            "$ref": "#/components/schemas/ApplicabilityResponse"
+          },
+          "predictive_uncertainty": {
+            "$ref": "#/components/schemas/PredictiveUncertaintyResponse"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "target_unit": {
+            "type": "string",
+            "title": "Target Unit"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/PredictionValidationResponse"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "persistence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PredictionPersistenceResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "explainability": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explainability"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "prediction",
+          "input_evidence",
+          "applicability",
+          "predictive_uncertainty",
+          "target",
+          "target_unit",
+          "model",
+          "validation",
+          "limitations"
+        ],
+        "title": "YieldPredictionResponse"
+      },
+      "ZenodoCreator": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "affiliation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affiliation"
+          },
+          "orcid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Orcid"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ZenodoCreator"
+      },
+      "ZenodoFile": {
+        "properties": {
+          "key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Key"
+          },
+          "size_bytes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Size Bytes"
+          },
+          "checksum": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checksum"
+          },
+          "download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Download Url"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ZenodoFile"
+      },
+      "ZenodoProvenance": {
+        "properties": {
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "classification": {
+            "type": "string",
+            "title": "Classification"
+          },
+          "record_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Record Id"
+          },
+          "doi": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doi"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "repository",
+          "classification"
+        ],
+        "title": "ZenodoProvenance"
+      },
+      "ZenodoRecord": {
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "title": "Record Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "doi": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doi"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publication Date"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "creators": {
+            "items": {
+              "$ref": "#/components/schemas/ZenodoCreator"
+            },
+            "type": "array",
+            "title": "Creators"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Keywords"
+          },
+          "resource_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Type"
+          },
+          "license": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "License"
+          },
+          "record_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Record Url"
+          },
+          "api_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Api Url"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/ZenodoFile"
+            },
+            "type": "array",
+            "title": "Files"
+          },
+          "source_provenance": {
+            "$ref": "#/components/schemas/ZenodoProvenance"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "record_id",
+          "creators",
+          "keywords",
+          "files",
+          "source_provenance"
+        ],
+        "title": "ZenodoRecord"
+      },
+      "ZenodoSearchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "total_matches": {
+            "type": "integer",
+            "title": "Total Matches"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/ZenodoRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "source_provenance": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Source Provenance"
+          },
+          "scientific_notice": {
+            "type": "string",
+            "title": "Scientific Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "provider",
+          "query",
+          "page",
+          "page_size",
+          "record_count",
+          "total_matches",
+          "records",
+          "source_provenance",
+          "scientific_notice"
+        ],
+        "title": "ZenodoSearchResponse"
+      }
+    }
+  }
+}
